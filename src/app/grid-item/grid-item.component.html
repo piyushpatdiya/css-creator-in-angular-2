@@ -1,0 +1,21 @@
+<div *ngIf="properties">
+  <div class="table-responsive">
+    <table class="table-hover table table-striped">
+      <tr *ngFor="let prop of properties; let i = index;" border="1">
+        <td>{{prop.name}}</td>
+        <td>{{prop.type}}</td>
+        <td>
+          <div *ngIf="prop.type == 'margin'">
+            <input type="text" [(ngModel)]='prop.value' name="prop.name" (keyup)="emit()" />
+          </div>
+          <div *ngIf="prop.type == 'color'">
+            <input [(ngModel)]='prop.value' [(colorPicker)]="prop.value" (colorPickerChange)="prop.value=$event" [style.background]="prop.value"
+              value="prop.value" name="{{prop.name}}" (click)="setColor(prop.value)" [cpPosition]="'bottom'"/>
+
+          </div>
+        </td>
+        <!--<td>{{prop.name}} : {{prop.value}}  :  </td>-->
+      </tr>
+    </table>
+  </div>
+</div>
